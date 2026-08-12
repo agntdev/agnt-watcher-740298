@@ -1,0 +1,10 @@
+[
+  {
+    "name": "quiet hours are validated and saved",
+    "steps": [
+      { "send": { "callback": "set:quiet" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Send quiet hours as 0-7 in your timezone, or send off." } }] },
+      { "send": { "text": "wrong" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Use two hours from 0 to 23, like 22-7, or send off." } }] },
+      { "send": { "text": "22-7" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Quiet hours are set to 22-7." } }] }
+    ]
+  }
+]

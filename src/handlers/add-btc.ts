@@ -1,4 +1,7 @@
 import { Composer } from "grammy";
+import type { Ctx } from "../bot.js";
+import { registerMainMenuItem } from "../toolkit/index.js";
+import { quickAdd } from "../crypto.js";
 
 // SCAFFOLD — generated from the bot blueprint BEFORE the agent runs.
 // Keep a LIVE registration (.command / .callbackQuery / …) so this feature is
@@ -7,11 +10,12 @@ import { Composer } from "grammy";
 // Do NOT rewrite src/bot.ts — buildBot() already auto-loads this module.
 // Menu: wire this into /start via registerMainMenuItem({ label: "Add Bitcoin", data: "add:BTC" }) if the toolkit exposes it.
 
-const composer = new Composer();
+registerMainMenuItem({ label: "Add Bitcoin", data: "add:BTC", order: 10 });
+const composer = new Composer<Ctx>();
 
 composer.callbackQuery("add:BTC", async (ctx) => {
   await ctx.answerCallbackQuery();
-  await ctx.reply("Quick-add Bitcoin to watchlist");
+  await quickAdd(ctx, "BTC");
 });
 
 export default composer;

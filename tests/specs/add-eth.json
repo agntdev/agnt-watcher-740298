@@ -7,7 +7,7 @@
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Quick-add Ethereum to watchlist"
+              "text": "ETH is on your watchlist."
             }
           }
         ],

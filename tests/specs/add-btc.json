@@ -7,7 +7,7 @@
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Quick-add Bitcoin to watchlist"
+              "text": "BTC is on your watchlist."
             }
           }
         ],
