@@ -7,7 +7,7 @@
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Request current price for a specific ticker or full watchlist"
+              "text": "Your watchlist is empty — tap Add Bitcoin, Add Ethereum, or Add Toncoin to begin."
             }
           }
         ],

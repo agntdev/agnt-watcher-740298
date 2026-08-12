@@ -1,0 +1,21 @@
+[
+  {
+    "name": "create a price alert from a ticker and threshold",
+    "steps": [
+      { "send": { "callback": "alert:new" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Send the ticker for this alert." } }] },
+      { "send": { "text": "BTC" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Use BTC for this alert. Choose the alert type." } }] },
+      { "send": { "callback": "alert:price" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Send the USD price that should trigger the alert." } }] },
+      { "send": { "text": "100000" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Set an alert for BTC: $100,000.00 or above?" } }] },
+      { "send": { "callback": "alert:confirm" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Alert set for BTC: $100,000.00 or above." } }] }
+    ]
+  },
+  {
+    "name": "alert threshold must be positive",
+    "steps": [
+      { "send": { "callback": "alert:new" }, "expect": [{ "method": "sendMessage" }] },
+      { "send": { "text": "BTC" }, "expect": [{ "method": "sendMessage" }] },
+      { "send": { "callback": "alert:percent" }, "expect": [{ "method": "sendMessage" }] },
+      { "send": { "text": "0" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Send a positive number for the alert limit." } }] }
+    ]
+  }
+]

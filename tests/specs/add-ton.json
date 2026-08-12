@@ -7,7 +7,7 @@
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Quick-add Toncoin to watchlist"
+              "text": "TON is on your watchlist."
             }
           }
         ],

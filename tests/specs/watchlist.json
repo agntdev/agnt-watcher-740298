@@ -1,0 +1,9 @@
+[
+  {
+    "name": "quick-add and remove a watchlist item",
+    "steps": [
+      { "send": { "callback": "add:BTC" }, "expect": [{ "method": "sendMessage", "payload": { "text": "BTC is on your watchlist." } }] },
+      { "send": { "callback": "rm:BTC" }, "expect": [{ "method": "editMessageText", "payload": { "text": "BTC was removed from your watchlist." } }] }
+    ]
+  }
+]

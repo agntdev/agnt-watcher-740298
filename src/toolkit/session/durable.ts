@@ -144,6 +144,17 @@ export class ChatDO {
       }
     }
 
+    // Small named domain documents let feature handlers keep durable records
+    // without a keyspace scan. Each feature owns an explicit document name.
+    if (url.pathname.startsWith("/domain/")) {
+      const key = "domain:" + url.pathname.slice("/domain/".length);
+      if (request.method === "GET") {
+        const value = await this.state.storage.get<unknown>(key);
+        return value === undefined ? new Response(null, { status: 204 }) : Response.json(value);
+      }
+      if (request.method === "PUT") { await this.state.storage.put(key, await request.json()); return new Response(null, { status: 204 }); }
+    }
+
     // Schedule a reminder + (re)arm the alarm to the earliest due one.
     if (url.pathname === "/remind" && request.method === "POST") {
       const rem = (await request.json()) as Reminder;

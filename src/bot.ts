@@ -6,7 +6,13 @@ import type { StorageAdapter } from "grammy";
 // bot grows. Durable domain data must NOT live here — use the toolkit's
 // persistent storage (see AGENTS.md).
 export interface Session {
-  // example: step?: "awaiting_amount";
+  step?: "ticker" | "threshold" | "percent" | "quiet" | "summary" | "confirm";
+  draftTicker?: string;
+  tickerMode?: "watch" | "alert" | "price";
+  draftThreshold?: number;
+  draftAlertKind?: "price" | "percent";
+  /** Harness-only state. Production records are held by the persistent store. */
+  harnessCrypto?: unknown;
 }
 
 export type Ctx = BotContext<Session>;
